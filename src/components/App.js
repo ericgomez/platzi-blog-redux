@@ -1,9 +1,22 @@
 import React from 'react'
 
 const App = () => {
+  const ponerFilas = () => [
+    <tr>
+      <td>Eric</td>
+      <td>eric.gomez@prodeco.mx</td>
+      <td>ericgomez.com</td>
+    </tr>,
+    <tr>
+    <td>Prodeco</td>
+    <td>prodeco@prodeco.mx</td>
+    <td>prodeco.com</td>
+  </tr>,
+  ]
+
   return (
     <div className='margen'>
-      <table className="tabla">
+      <table className='tabla'>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -12,11 +25,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Eric</td>
-            <td>eric.gomez@prodeco.mx</td>
-            <td>ericgomez.com</td>
-          </tr>
+          { ponerFilas() }
         </tbody>
       </table>
     </div>
