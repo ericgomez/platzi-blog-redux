@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux';
 
 import * as usuariosActions from './../../actions/usuariosActions';
@@ -7,11 +6,6 @@ import * as usuariosActions from './../../actions/usuariosActions';
 class Usuarios extends Component {
 
   componentDidMount(){
-    // const respuesta = await axios.get('https://jsonplaceholder.typicode.com/users');
-    // console.log('3. componentDidMount()');
-    // this.setState({
-    //   usuarios: respuesta.data
-    // })
     this.props.traerTodos();
   }
 
