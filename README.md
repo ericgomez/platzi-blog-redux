@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+# Curso de Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Proyecto del curso
 
-## Available Scripts
+## Platzi Blog
 
-In the project directory, you can run:
+![proyecto](https://static.platzi.com/media/landing-projects/Proyecto-redux.gif)
 
-### `npm start`
+Aprende a usar el ciclo completo de Redux creando una conexión a un api gratuito para obtener datos para tu Platzi Blog. Crea y configura el almacenamiento principal, conecta componentes para optimizar el funcionamiento de tu blog. Utiliza **llamadas asíncronas** y prepara sus fases obligatorias, utiliza diversos enfoques de desarrollo para que veas diferentes alternativas. Codifica con varias estructuras y decide cuál te gusta más. Entiende el ciclo completo y adáptalo a nuevos proyectos. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> "Todos los grandes desarrolladores llegaron ahí resolviendo problemas que no estaban calificados para resolver, hasta que en realidad lo hicieron". _Patrick McKenzie_ 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## ¿Qué es React y cómo funciona?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React es uno de los frameworks web de JavaScript más comentados en años. Junto con Angular, y más recientemente Vue, React es una herramienta que ha tenido un gran impacto en la forma en que construimos aplicaciones web. En su página lo definen de una manera rápida y sencilla:
 
-### `npm run build`
+**_Una biblioteca de JavaScript para construir interfaces de usuario._**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React generalmente se considera la capa de vista en una aplicación. Es posible que hayamos utilizado bibliotecas como Handlebars o jQuery en el pasado. Al igual que jQuery, React manipula los elementos de la interfaz de usuario que se insertan en la página, los componentes de React cambian lo que el usuario ve.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Entorno de trabajo**
 
-### `npm run eject`
+Se usará Node.js. Un ambiente de trabajo que nos permite ejecutar JavaScript por fuera de un navegador.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Ingresa al siguiente url: https://nodejs.org/en/download/
+- Descarga el instalador correspondiente a tu sistema operativo.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Creación de la app con react
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para crear el proyecto con react ejecutamos el siguiente comando:
 
-## Learn More
+- `npx create-react-app blog`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Luego vamos a la carpeta **`blog/src/`** y eliminamos los siguientes archivos.
+- App.css
+- App.test.js
+- logo.svg
+- serviceWorker.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Vamos crear una carpeta llamada **components** y movemos el archivo **`App.js`** a esa carpeta.
 
-### Code Splitting
+Luego que hagamos eso, debemos cambiar las rutas en el archivo **`index.js`** y eliminar los imports a `serviceWorker`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Stateful vs Stateless
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Los componentes **no funcionales** _no manejan estado_, solo manejan información y funciones.
 
-### Making a Progressive Web App
+- Los **componentes de clases** manejan un estado interno, información y funciones, no hace falta definir las funciones con const simplemente con el nombre de la función ya lo detecta.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Ciclo de vida de React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Tenemos 4 fases por los que un componente pasa:
 
-### Deployment
+1. **Initialization**: Declaramos nuestro estado o propiedades
+2. **Mounting**: Todo componente debe tener render. Es obligatorio. 
+  - `componentWillMount`
+  - `render`
+  - `componentDidMount`
+3. **Updation**
+4. **Unmounting**: Solo hay una función en caso de que queramos hacer algo cuando se destruya un componente
+  - `componentWillUmount`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+[**jsonplaceholder**](https://jsonplaceholder.typicode.com/) Fake Online REST API for Testing and Prototyping 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Axios** Es un modulo de JS que permite utilizar todos los métodos HTTP. Se instala con 
+
+- `npm install axios`
+
+_Su uso se puede ver así:_
+
+```js
+import axios from 'axios';
+
+const respuesta = await axios.get('https://jsonplaceholder.typicode.com/users');
+```
+
+_El ejemplo completo se puede ver en:_ [index.js](blog/src/components/users/index.js)
+
+## Manejando promesas
+
+Una **Promesa** es un proxy para un valor no necesariamente conocido en el momento que es creada la promesa.
+
+Las promesas tienen tres estados:
+- pending
+- fullfilled
+- rejected
+
+Las promesas se invocan de la siguiente forma:
+
+```js
+new  Promise( ( resolve, reject ) => {
+// --- llamado asíncrono 
+        if( todoOK ) { 
+        // -- se ejecutó el llamado exitosamente resolve() }
+        else { 
+        // -- hubo un error en el llamado reject() 
+        } 
+} )
+```
+
+
+## React Router DOM
+
+Vamos a instalar ReactRouterDom, que es una biblioteca adicional a React, que nos permite manejar rutas dentro de la aplicación.
+
+- `npm react-router-dom`
+
+
+**_Ejemplo de Rutas con ReactJS_**
+
+```js
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import Menu from './Menu';
+import Users from './users';
+
+const Tareas = () => <div>Tareas</div>;
+
+const App = () => (
+  <BrowserRouter>
+    <Menu />
+    <Route exact path='/' component={Users} />
+    <Route exact path='/tareas' component={Tareas} />
+  </BrowserRouter>
+);
+
+export default App;
+```
+
+
+[Ciclo de vida de un componente de react](https://platzi.com/tutoriales/1548-react/2283-ciclo-de-vida-de-un-componente-de-react/)
