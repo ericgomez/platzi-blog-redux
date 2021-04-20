@@ -1,4 +1,4 @@
-import { TRAER_TODAS, CARGANDO, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, GUARDADAR, ACTUALIZAR } from '../types/tareasTypes';
+import { TRAER_TODAS, CARGANDO, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, GUARDADAR, ACTUALIZAR, LIMPIAR } from '../types/tareasTypes';
 
 const INITIAL_STATE = {
 	tareas: {},
@@ -39,7 +39,10 @@ export default (state = INITIAL_STATE, action) => {
 
 		case ACTUALIZAR:
 			return { ...state, tareas: action.payload };
-			
+		
+		case LIMPIAR:
+			return { ...state, usuario_id: '', titulo: '' };
+
 		default: return state;
 	};
 }; 

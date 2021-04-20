@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TRAER_TODAS, CARGANDO, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, GUARDADAR, ACTUALIZAR } from '../types/tareasTypes';
+import { TRAER_TODAS, CARGANDO, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, GUARDADAR, ACTUALIZAR, LIMPIAR } from '../types/tareasTypes';
 
 export const traerTodas = () => async (dispatch) => {
 	dispatch({
@@ -131,4 +131,10 @@ export const eliminar = (tar_id) => async (dispatch) => {
 			payload: 'Servicio no disponible en este momento.'
 		})
 	}
+}; 
+
+export const limpiarForma = () => (dispatch) => {
+	dispatch({
+		type: LIMPIAR
+	});
 }; 
