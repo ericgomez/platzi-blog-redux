@@ -1,17 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import Spinner from '../General/Spinner';
+import Error404 from '../General/Error404';
 
 const Comentarios = props => {
- // if (!props.abierto) return ''
+
+  if (props.cargando) {
+    return <Spinner />
+  }
+
+  if (props.error) {
+    return <Error404 mensaje={ props.error } />
+  }
+  
+  const ponerComentarios = () => (
+		props.comentarios.map((comentario) => (
+			<li key={ comentario.id }>
+				<b><u>{ comentario.email }</u></b>
+				<br />
+				{ comentario.body }
+			</li>
+		))
+	);
 
   return (
     <ul>
-      <li>hola</li>
-      <li>hola</li>
-      <li>hola</li>
-      <li>hola</li>
-      <li>hola</li>
+      { ponerComentarios() }
     </ul>
   )
 }
 
-export default Comentarios
+const mapStateToProps = ({ publicacionesReducer }) => publicacionesReducer;
+
+export default connect(mapStateToProps)(Comentarios);
