@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Spinner from './../General/Spinner';
 import Error404 from './../General/Error404';
+import { Redirect } from 'react-router-dom';
 
 import * as tareasActions from '../../actions/tareasActions';
 
@@ -55,6 +56,9 @@ class Guardar extends Component {
   render () {
     return (
       <div>
+        {
+          (this.props.regresar) ? <Redirect to='/tareas' /> : ''
+        }
         <h1>Guardar Tarea</h1>
         Usuario id:
         <input 
