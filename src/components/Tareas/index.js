@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import Spinner from './../General/Spinner';
 import Error404 from './../General/Error404';
 
@@ -33,7 +35,7 @@ class Tareas extends Component {
 
 	ponerTareas = (user_id) => {
 		const { tareas } = this.props;
-    
+
 		const por_usuario = {
 			...tareas[user_id]
 		};
@@ -49,9 +51,13 @@ class Tareas extends Component {
 	};
 
 	render() {
-		console.log(this.props);
 		return (
 			<div>
+        <button>
+          <Link to='/tareas/guardar'>
+						Agregar
+					</Link>
+        </button>
 				{ this.mostrarContenido() }
 			</div>
 		);
