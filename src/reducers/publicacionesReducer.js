@@ -1,4 +1,4 @@
-// import { TRAER_TODOS, CARGANDO, ERROR } from '../types/usuariosTypes';
+import { TRAER_TODOS, CARGANDO, ERROR } from '../types/publicacionesTypes';
 
 const INITIAL_STATE = {
 	publicaciones: [],
@@ -9,6 +9,14 @@ const INITIAL_STATE = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case TRAER_TODOS:
+      return { ...state, publicaciones: action.payload, cargando: false };
+    
+    case CARGANDO:
+      return {  ...state, cargando: true };
+
+    case ERROR:
+      return {  ...state, error: action.payload, cargando: false };
 
     default: return state;
   };
