@@ -62,7 +62,8 @@ export const agregar = (nueva_tarea) => async (dispatch) => {
 	catch (error) {
 		console.log(error.message);
 		dispatch({
-			type: ERROR
+			type: ERROR,
+			payload: 'Intente más tarde.'
 		});
 	}
 }; 
