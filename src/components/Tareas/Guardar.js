@@ -8,6 +8,21 @@ import { Redirect } from 'react-router-dom';
 import * as tareasActions from '../../actions/tareasActions';
 
 class Guardar extends Component {
+
+  componentDidMount() {
+		const {
+			match: { params: { user_id, tar_id } },
+			tareas,
+			cambioUsuarioId,
+			cambioTitulo
+		} = this.props;
+
+		if (user_id && tar_id) {
+			const tarea = tareas[user_id][tar_id];
+			cambioUsuarioId(tarea.userId);
+			cambioTitulo(tarea.title);
+		}
+	}
   
   cambioUsuarioId = (event) => {
 		this.props.cambioUsuarioId(event.target.value);
@@ -18,13 +33,35 @@ class Guardar extends Component {
 	};
 
   guardar = () => {
-		const { usuario_id, titulo, agregar } = this.props;
+		const { 
+      match: { params: { user_id, tar_id } },
+      tareas,
+      usuario_id, 
+      titulo, 
+      agregar,
+      editar, 
+    } = this.props;
+
 		const nueva_tarea = {
 			userId: usuario_id,
 			title: titulo,
 			completed: false
 		};
-		agregar(nueva_tarea);
+		
+    if (user_id && tar_id) {
+			const tarea = tareas[user_id][tar_id];
+			const tarea_editada = {
+				...nueva_tarea,
+				completed: tarea.completed,
+				id: tarea.id
+			};
+      // En caso de que existan las tareas Editamos
+			editar(tarea_editada);
+		}
+		else {
+      // En caso de no existan las tareas Modificamos
+			agregar(nueva_tarea);
+		}
 	};
 
   deshabilitar = () => {
