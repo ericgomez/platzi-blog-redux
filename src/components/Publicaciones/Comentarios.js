@@ -5,12 +5,12 @@ import Error404 from '../General/Error404';
 
 const Comentarios = props => {
 
-  if (props.cargando) {
-    return <Spinner />
+  if (props.comment_error) {
+    return <Error404 mensaje={ props.comment_error } />
   }
 
-  if (props.error) {
-    return <Error404 mensaje={ props.error } />
+  if (props.comment_cargando && !props.comentarios.length) {
+    return <Spinner />
   }
   
   const ponerComentarios = () => (
